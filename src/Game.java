@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 @SuppressWarnings("serial")
 public class Game extends Applet implements Runnable, KeyListener{
 
+	boolean EndGame;
 	Graphics gfx;
 	Image img;
 	Thread thread;
@@ -42,18 +43,39 @@ public class Game extends Applet implements Runnable, KeyListener{
 	}
 
 	
-	public void run() {
-		while(true){
+	public void run() 
+	{
+		while(true)
+		{
 			
 			snake.move();
 			
 			this.repaint();
-			try {
+			try 
+			{
+				
 				Thread.sleep(40);
-			} catch (InterruptedException e){
+			} catch (InterruptedException e)
+			{
 				e.printStackTrace();
 			}
 			
+		}
+	}
+	
+	public void EndGameCheck()
+	{
+		if(snake.getX() < 0 || snake.getX() > 400)
+		{
+			EndGame = true;
+		}
+		if(snake.getY() < 0 || snake.getY() > 400)
+		{
+			EndGame = true;
+		}
+		if(snake.HitSelf())
+		{
+			EndGame = true;
 		}
 	}
 	
