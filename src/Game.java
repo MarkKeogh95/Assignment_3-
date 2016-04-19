@@ -37,12 +37,23 @@ public class Game extends Applet implements Runnable, KeyListener{
 	}
 
 	public void keyTyped(KeyEvent e) {
-		
+
 	}
 
 	
 	public void keyPressed(KeyEvent e) {
-		
+		if(e.getKeyCode()== KeyEvent.VK_UP){
+			
+		}
+		if(e.getKeyCode()== KeyEvent.VK_RIGHT){
+			
+		}
+		if(e.getKeyCode()== KeyEvent.VK_DOWN){
+	
+		}
+		if(e.getKeyCode()== KeyEvent.VK_LEFT){
+	
+		}
 		
 	}
 
