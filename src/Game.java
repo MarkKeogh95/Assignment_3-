@@ -28,7 +28,15 @@ public class Game extends Applet implements Runnable, KeyListener{
 	public void paint(Graphics g){
 		gfx.setColor(Color.black);
 		gfx.fillRect(0, 0, 400, 400);
+		if(!EndGame)
+		{
 		snake.draw(gfx);
+		}
+		else
+		{
+			gfx.setColor(Color.RED);
+			gfx.drawString("GAME OVER", 100, 100);
+		}
 		
 		
 		g.drawImage(img, 0, 0, null);
@@ -48,8 +56,11 @@ public class Game extends Applet implements Runnable, KeyListener{
 		while(true)
 		{
 			
+			if(!EndGame)
+			{
 			snake.move();
-			
+			this.EndGameCheck();
+			}
 			this.repaint();
 			try 
 			{

@@ -6,21 +6,21 @@ import java.util.ArrayList;
 public class Snake {
 
 	List<Point> snakePoints;
-	int xDir, yDir;
+	int xDirection, yDirection;
 	boolean Movement, Longer;
-	final int STARTSIZE = 20, STARTX = 150, STARTY = 150;
+	final int SSIZE = 20, BEGINX = 150, BEGINY = 150;
 	
 	
 	
 	public Snake(){
 		snakePoints = new ArrayList<Point>();
-		xDir = 0;
-		yDir = 0;
+		xDirection = 0;
+		yDirection = 0;
 		Movement = false;
 		Longer = false;
-		snakePoints.add(new Point(STARTX, STARTY));
-		for( int i = 1; i < STARTSIZE; i++){
-			snakePoints.add(new Point(STARTX - (i * 4), STARTY));
+		snakePoints.add(new Point(BEGINX, BEGINY));
+		for( int i = 1; i < SSIZE; i++){
+			snakePoints.add(new Point(BEGINX - (i * 4), BEGINY));
 		}
 	}
 	
@@ -35,7 +35,7 @@ public class Snake {
 		if(Movement == true){
 		Point temp = snakePoints.get(0);
 		Point last = snakePoints.get(snakePoints.size() - 1);
-		Point newStart = new Point(temp.getX() + xDir * 4, temp.getY() + yDir * 4);
+		Point newStart = new Point(temp.getX() + xDirection * 4, temp.getY() + yDirection * 4);
 		for(int i = snakePoints.size() - 1; i >= 1; i--){
 			snakePoints.set(i,  snakePoints.get(i - 1));
 		}
@@ -52,10 +52,10 @@ public class Snake {
 		for(int i = 1; i <snakePoints.size(); i++)
 		{
 			if(snakePoints.get(i).getX() == x && snakePoints.get(i).getY() == y)
-			{
+			
 				return true;
-			}
 		}
+		return false;
 	}
 	
 	public boolean Movement(){
@@ -67,19 +67,19 @@ public class Snake {
 	}
 	
 	public int getXDir(){
-		return xDir;
+		return xDirection;
 	}
 	
 	public int getYDir(){
-		return yDir;
+		return yDirection;
 	}
 	
 	public void setXDir(int x){
-		xDir = x;
+		xDirection = x;
 	}
 	
 	public void setYDir(int y){
-		yDir = y;
+		yDirection = y;
 	}
 	
 	//This gets the x position which is
