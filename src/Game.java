@@ -9,11 +9,14 @@ public class Game extends Applet implements Runnable, KeyListener{
 
 	Graphics gfx;
 	Image img;
+	Thread thread;
 	
 	public void init(){
 		this.resize(400, 400);
 		img = createImage(400,400);
 		gfx = img.getGraphics();
+		thread = new Thread(this);
+		thread.start();
 	}
 	
 	public void paint(Graphics g){
