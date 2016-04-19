@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+
 @SuppressWarnings("serial")
 public class Game extends Applet implements Runnable, KeyListener{
 
@@ -15,7 +16,7 @@ public class Game extends Applet implements Runnable, KeyListener{
 	
 	public void init(){
 		this.resize(400, 400);
-		img = createImage(400,400);
+		img = createImage(400, 400);
 		gfx = img.getGraphics();
 		snake = new Snake();
 		thread = new Thread(this);
@@ -41,9 +42,9 @@ public class Game extends Applet implements Runnable, KeyListener{
 
 	
 	public void run() {
-		for(;;){
+		while(true){
 			
-			
+			snake.move();
 			
 			this.repaint();
 			try {
@@ -54,23 +55,33 @@ public class Game extends Applet implements Runnable, KeyListener{
 			
 		}
 	}
-
-	public void keyTyped(KeyEvent e) {
-
-	}
-
 	
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode()== KeyEvent.VK_UP){
+		if(e.getKeyCode() == KeyEvent.VK_UP){
+			if(snake.getYDir() != 1){
+				snake.setYDir(-1);
+				snake.setXDir(0);
+			}
+		}
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			if(snake.getXDir() != -1){
+				snake.setXDir(1);
+				snake.setYDir(0);
+			}
 			
 		}
-		if(e.getKeyCode()== KeyEvent.VK_RIGHT){
-			
+		if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			if(snake.getYDir() != -1){
+				snake.setYDir(1);
+				snake.setXDir(0);
+			}
 		}
-		if(e.getKeyCode()== KeyEvent.VK_DOWN){
 	
+		if(e.getKeyCode() == KeyEvent.VK_LEFT){
+			if(snake.getXDir() != 1){
+				snake.setXDir(-1);
+				snake.setYDir(0);
 		}
-		if(e.getKeyCode()== KeyEvent.VK_LEFT){
 	
 		}
 		
@@ -81,4 +92,9 @@ public class Game extends Applet implements Runnable, KeyListener{
 		
 		
 	}
+	
+	public void keyTyped(KeyEvent e) {
+
+	}
+
 }

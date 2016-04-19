@@ -6,21 +6,21 @@ import java.util.ArrayList;
 public class Snake {
 
 	List<Point> snakePoints;
-	int xDirection, yDirection;
+	int xDir, yDir;
 	boolean isMoving, elongate;
-	final int SSIZE = 20, StartX = 150, StartY = 150;
+	final int STARTSIZE = 20, STARTX = 150, STARTY = 150;
 	
 	
 	
 	public Snake(){
 		snakePoints = new ArrayList<Point>();
-		xDirection = 0;
-		yDirection = 0;
+		xDir = 0;
+		yDir = 0;
 		isMoving = false;
 		elongate = false;
-		snakePoints.add(new Point(StartX, StartY));
-		for( int i = 1; i < SSIZE; i++){
-			snakePoints.add(new Point(StartX - i * 4, StartY));
+		snakePoints.add(new Point(STARTX, STARTY));
+		for( int i = 1; i < STARTSIZE; i++){
+			snakePoints.add(new Point(STARTX - (i * 4), STARTY));
 		}
 	}
 	
@@ -31,20 +31,33 @@ public class Snake {
 		}
 	}
 	
-	public int getxDirection(){
-		return xDirection;
+	public void move(){
+		if(isMoving == true){
+		Point temp = snakePoints.get(0);
+		Point last = snakePoints.get(snakePoints.size() - 1);
+		Point newStart = new Point(temp.getX() + xDir * 4, temp.getY() + yDir * 4);
+		for(int i = snakePoints.size() - 1; i >= 1; i--){
+			snakePoints.set(i,  snakePoints.get(i - 1));
+		}
+		snakePoints.set(0, newStart);
+		}
+	
 	}
 	
-	public int getyDirection(){
-		return yDirection;
+	public int getXDir(){
+		return xDir;
 	}
 	
-	public void setxDirection(int x){
-		xDirection = x;
+	public int getYDir(){
+		return yDir;
 	}
 	
-	public void setyDirection(int y){
-		yDirection = y;
+	public void setXDir(int x){
+		xDir = x;
+	}
+	
+	public void setYDir(int y){
+		yDir = y;
 	}
 	
 	//This gets the x position which is
