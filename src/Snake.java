@@ -26,8 +26,8 @@ public class Snake {
 	
 	public void draw(Graphics g){
 		g.setColor(Color.white);
-		for(Point p : Body){
-			g.fillRect(p.getX(), p.getY(), 4, 4);
+		for(Point a : Body){
+			g.fillRect(a.getX(), a.getY(), 5, 5);
 		}
 	}
 	

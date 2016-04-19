@@ -34,7 +34,7 @@ public class Game extends Applet implements Runnable, KeyListener{
 		}
 		else
 		{
-			gfx.setColor(Color.RED);
+			gfx.setColor(Color.YELLOW);
 			gfx.drawString("GAME OVER", 100, 100);
 		}
 		
