@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Snake {
 
-	List<Point> snakePoints;
+	List<Point> Body;
 	int xDirection, yDirection;
 	boolean Movement, Longer;
 	final int SSIZE = 20, BEGINX = 150, BEGINY = 150;
@@ -13,33 +13,33 @@ public class Snake {
 	
 	
 	public Snake(){
-		snakePoints = new ArrayList<Point>();
+		Body = new ArrayList<Point>();
 		xDirection = 0;
 		yDirection = 0;
 		Movement = false;
 		Longer = false;
-		snakePoints.add(new Point(BEGINX, BEGINY));
+		Body.add(new Point(BEGINX, BEGINY));
 		for( int i = 1; i < SSIZE; i++){
-			snakePoints.add(new Point(BEGINX - (i * 4), BEGINY));
+			Body.add(new Point(BEGINX - (i * 4), BEGINY));
 		}
 	}
 	
 	public void draw(Graphics g){
 		g.setColor(Color.white);
-		for(Point p : snakePoints){
+		for(Point p : Body){
 			g.fillRect(p.getX(), p.getY(), 4, 4);
 		}
 	}
 	
 	public void move(){
 		if(Movement == true){
-		Point temp = snakePoints.get(0);
-		Point last = snakePoints.get(snakePoints.size() - 1);
+		Point temp = Body.get(0);
+		Point last = Body.get(Body.size() - 1);
 		Point newStart = new Point(temp.getX() + xDirection * 4, temp.getY() + yDirection * 4);
-		for(int i = snakePoints.size() - 1; i >= 1; i--){
-			snakePoints.set(i,  snakePoints.get(i - 1));
+		for(int i = Body.size() - 1; i >= 1; i--){
+			Body.set(i,  Body.get(i - 1));
 		}
-		snakePoints.set(0, newStart);
+		Body.set(0, newStart);
 		}
 	
 	}
@@ -49,9 +49,9 @@ public class Snake {
 		int x = this.getX();
 		int y = this.getY();
 		
-		for(int i = 1; i <snakePoints.size(); i++)
+		for(int i = 1; i <Body.size(); i++)
 		{
-			if(snakePoints.get(i).getX() == x && snakePoints.get(i).getY() == y)
+			if(Body.get(i).getX() == x && Body.get(i).getY() == y)
 			
 				return true;
 		}
@@ -66,29 +66,29 @@ public class Snake {
 		Movement = b;
 	}
 	
-	public int getXDir(){
+	public int getXDirection(){
 		return xDirection;
 	}
 	
-	public int getYDir(){
+	public int getYDirection(){
 		return yDirection;
 	}
 	
-	public void setXDir(int x){
+	public void setXDirection(int x){
 		xDirection = x;
 	}
 	
-	public void setYDir(int y){
+	public void setYDirection(int y){
 		yDirection = y;
 	}
 	
 	//This gets the x position which is
 	//the head of the snake
 	public int getX(){
-		return snakePoints.get(0).getX();
+		return Body.get(0).getX();
 	}
 	
 	public int getY(){
-		return snakePoints.get(0).getY();
+		return Body.get(0).getY();
 	}
 }

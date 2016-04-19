@@ -12,15 +12,15 @@ public class Game extends Applet implements Runnable, KeyListener{
 	boolean EndGame;
 	Graphics gfx;
 	Image img;
+	Snake player;
 	Thread thread;
-	Snake snake;
 	
 	public void init(){
 		this.resize(400, 400);
 		img = createImage(400, 400);
 		gfx = img.getGraphics();
 		this.addKeyListener(this);
-		snake = new Snake();
+		player = new Snake();
 		thread = new Thread(this);
 		thread.start();
 	}
@@ -30,7 +30,7 @@ public class Game extends Applet implements Runnable, KeyListener{
 		gfx.fillRect(0, 0, 400, 400);
 		if(!EndGame)
 		{
-		snake.draw(gfx);
+		player.draw(gfx);
 		}
 		else
 		{
@@ -58,7 +58,7 @@ public class Game extends Applet implements Runnable, KeyListener{
 			
 			if(!EndGame)
 			{
-			snake.move();
+			player.move();
 			this.EndGameCheck();
 			}
 			this.repaint();
@@ -76,15 +76,15 @@ public class Game extends Applet implements Runnable, KeyListener{
 	
 	public void EndGameCheck()
 	{
-		if(snake.getX() < 0 || snake.getX() > 400)
+		if(player.getX() < 0 || player.getX() > 400)
 		{
 			EndGame = true;
 		}
-		if(snake.getY() < 0 || snake.getY() > 400)
+		if(player.getY() < 0 || player.getY() > 400)
 		{
 			EndGame = true;
 		}
-		if(snake.HitSelf())
+		if(player.HitSelf())
 		{
 			EndGame = true;
 		}
@@ -92,36 +92,36 @@ public class Game extends Applet implements Runnable, KeyListener{
 	
 	public void keyPressed(KeyEvent e) {
 		
-		if(!snake.Movement()){
+		if(!player.Movement()){
 			if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_RIGHT 
 				|| e.getKeyCode() ==KeyEvent.VK_DOWN) {
-				snake.setMovement(true);
+				player.setMovement(true);
 			}
 		}
 		if(e.getKeyCode() == KeyEvent.VK_UP){
-			if(snake.getYDir() != 1){
-				snake.setYDir(-1);
-				snake.setXDir(0);
+			if(player.getYDirection() != 1){
+				player.setYDirection(-1);
+				player.setXDirection(0);
 			}
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			if(snake.getXDir() != -1){
-				snake.setXDir(1);
-				snake.setYDir(0);
+			if(player.getXDirection() != -1){
+				player.setXDirection(1);
+				player.setYDirection(0);
 			}
 			
 		}
 		if(e.getKeyCode() == KeyEvent.VK_DOWN){
-			if(snake.getYDir() != -1){
-				snake.setYDir(1);
-				snake.setXDir(0);
+			if(player.getYDirection() != -1){
+				player.setYDirection(1);
+				player.setXDirection(0);
 			}
 		}
 	
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){
-			if(snake.getXDir() != 1){
-				snake.setXDir(-1);
-				snake.setYDir(0);
+			if(player.getXDirection() != 1){
+				player.setXDirection(-1);
+				player.setYDirection(0);
 		}
 	
 		}
