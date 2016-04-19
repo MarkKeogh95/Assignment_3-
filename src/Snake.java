@@ -31,19 +31,19 @@ public class Snake {
 		}
 	}
 	
-	public int getXDirection(){
+	public int getxDirection(){
 		return xDirection;
 	}
 	
-	public int getYDirection(){
+	public int getyDirection(){
 		return yDirection;
 	}
 	
-	public void setXDirection(int x){
+	public void setxDirection(int x){
 		xDirection = x;
 	}
 	
-	public void setYDirection(int y){
+	public void setyDirection(int y){
 		yDirection = y;
 	}
 	
