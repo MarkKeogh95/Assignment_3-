@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 
 
 @SuppressWarnings("serial")
+//Runanable applet with keylistener , to get info from the keyboard
 public class Game extends Applet implements Runnable, KeyListener{
 
 	boolean EndGame;
@@ -28,6 +29,7 @@ public class Game extends Applet implements Runnable, KeyListener{
 	}
 	
 	public void paint(Graphics a){
+		//Colour in the whole background
 		graphs.setColor(Color.black);
 		graphs.fillRect(0, 0, 400, 400);
 		if(!EndGame)
@@ -97,34 +99,41 @@ public class Game extends Applet implements Runnable, KeyListener{
 	}
 	
 	public void keyPressed(KeyEvent e) {
-		
+		//Check input from the keyboard is UP,Down or RIGHT to start movement
 		if(!player.Movement()){
 			if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_RIGHT 
 				|| e.getKeyCode() ==KeyEvent.VK_DOWN) {
 				player.setMovement(true);
 			}
 		}
+		//Changes the direction for the snake when UP is pressed
 		if(e.getKeyCode() == KeyEvent.VK_UP){
+			//if y direction is not equal 1, so it can't double back on itself
 			if(player.getYDirection() != 1){
 				player.setYDirection(-1);
 				player.setXDirection(0);
 			}
 		}
+		//Changes the direction for the snake when RIGHT is pressed
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			//If not going LEFT
 			if(player.getXDirection() != -1){
 				player.setXDirection(1);
 				player.setYDirection(0);
 			}
 			
 		}
+		//Changes the direction for the snake when DOWN is pressed
 		if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			//If not going UP
 			if(player.getYDirection() != -1){
 				player.setYDirection(1);
 				player.setXDirection(0);
 			}
 		}
-	
+		//Changes the direction for the snake when LEFT is pressed
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){
+			//If not going RIGHT
 			if(player.getXDirection() != 1){
 				player.setXDirection(-1);
 				player.setYDirection(0);
