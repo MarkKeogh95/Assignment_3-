@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Fruit {
 		
-	private int x,y, Svalue;
+	private int x,y, Svalue, HighestValue = 0;
 	private Snake a;
 	
 	public Fruit(Snake b)
@@ -26,6 +26,17 @@ public class Fruit {
 		return Svalue;
 	}
 	
+	public int HighScore()
+	{
+		int a = 0;
+		if(Svalue > HighestValue)
+		{
+			a = Svalue;
+			HighestValue = a;
+		}
+		return HighestValue;
+	}
+	
 	public void draw(Graphics a)
 	{
 		a.setColor(Color.ORANGE);
@@ -41,6 +52,7 @@ public class Fruit {
 			{
 				position();
 				Svalue++;
+				a.Length(true);
 				return true;
 			}
 		return false;

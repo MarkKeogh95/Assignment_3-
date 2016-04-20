@@ -34,11 +34,13 @@ public class Game extends Applet implements Runnable, KeyListener{
 		{
 		player.draw(graphs);
 		fruit.draw(graphs);
+		graphs.drawString("Score: " + fruit.Score(), 10, 10);
 		}
 		else
 		{
 			graphs.setColor(Color.YELLOW);
 			graphs.drawString("GAME OVER", 100, 100);
+			graphs.drawString("HighScore: " + fruit.HighScore(), 100, 120);
 		}
 		
 		
@@ -69,7 +71,7 @@ public class Game extends Applet implements Runnable, KeyListener{
 			try 
 			{
 				
-				Thread.sleep(40);
+				Thread.sleep(30);
 			} catch (InterruptedException e)
 			{
 				e.printStackTrace();

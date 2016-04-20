@@ -96,4 +96,9 @@ public class Snake {
 	public int getY(){
 		return Body.get(0).getY();
 	}
+	
+	public void Length(boolean a)
+	{
+		Longer = a;
+	}
 }
