@@ -24,6 +24,7 @@ public class Snake {
 		//Setting length and start position of the snake
 		Body.add(new Point(BEGINX, BEGINY));
 		for( int i = 1; i < SSIZE; i++){
+			//offsets by 4 for each rectangle and minus it to push the snake out left
 			Body.add(new Point(BEGINX - (i * 4), BEGINY));
 		}
 	}
@@ -37,17 +38,25 @@ public class Snake {
 		}
 	}
 	
+	
 	public void move(){
 		if(Movement == true){
+		//Gets the head of the snake
 		Point temp = Body.get(0);
+		//Gets the end point of the snake
 		Point last = Body.get(Body.size() - 1);
+		//Adding in a new rectangle
 		Point newStart = new Point(temp.getX() + xDirection * 4, temp.getY() + yDirection * 4);
+		//Starts at end of snake
+		//every point becomes the point that was before it
 		for(int i = Body.size() - 1; i >= 1; i--){
+			//updates body 
 			Body.set(i,  Body.get(i - 1));
 		}
 		Body.set(0, newStart);
 		if(Longer)
 		{
+			//Adding an extra rectangle
 			Body.add(last);
 			Longer = false;
 		}
@@ -57,11 +66,14 @@ public class Snake {
 	
 	public boolean HitSelf()
 	{
+		//track the head position to see if it is the same as any other point of snake
 		int x = this.getX();
 		int y = this.getY();
 		
+		//Starts after the head position
 		for(int i = 1; i <Body.size(); i++)
 		{
+			//checks if positions match
 			if(Body.get(i).getX() == x && Body.get(i).getY() == y)
 			
 				return true;
@@ -102,6 +114,7 @@ public class Snake {
 	public int getY(){
 		return Body.get(0).getY();
 	}
+	
 	
 	public void Length(boolean a)
 	{

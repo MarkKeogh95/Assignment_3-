@@ -22,6 +22,7 @@ public class Game extends Applet implements Runnable, KeyListener{
 		img = createImage(400, 400);
 		graphs = img.getGraphics();
 		this.addKeyListener(this);
+		//Create new instances of classes
 		player = new Snake();
 		fruit = new Fruit(player);
 		thread = new Thread(this);
@@ -32,20 +33,25 @@ public class Game extends Applet implements Runnable, KeyListener{
 		//Colour in the whole background
 		graphs.setColor(Color.black);
 		graphs.fillRect(0, 0, 400, 400);
+		//if the endgame boolean is not true draws snake and fruit
 		if(!EndGame)
 		{
+		//Draws objects
 		player.draw(graphs);
 		fruit.draw(graphs);
+		//Shows score in top left corner
 		graphs.drawString("Score: " + fruit.Score(), 10, 10);
 		}
+		//If endgame boolean is true display messages
 		else
 		{
+			//Displays game over and highscore when games over
 			graphs.setColor(Color.YELLOW);
 			graphs.drawString("GAME OVER", 100, 100);
 			graphs.drawString("HighScore: " + fruit.HighScore(), 100, 120);
 		}
 		
-		
+		//draws the background
 		a.drawImage(img, 0, 0, null);
 	}
 	
@@ -60,6 +66,7 @@ public class Game extends Applet implements Runnable, KeyListener{
 	
 	public void run() 
 	{
+		//Infinite while loop
 		while(true)
 		{
 			
@@ -72,7 +79,7 @@ public class Game extends Applet implements Runnable, KeyListener{
 			this.repaint();
 			try 
 			{
-				
+				//Time delay, sets speed, lower the number the faster the snake
 				Thread.sleep(30);
 			} catch (InterruptedException e)
 			{
@@ -84,6 +91,7 @@ public class Game extends Applet implements Runnable, KeyListener{
 	
 	public void EndGameCheck()
 	{
+		//Checks if the snake has hit a wall
 		if(player.getX() < 0 || player.getX() > 400)
 		{
 			EndGame = true;
@@ -92,6 +100,7 @@ public class Game extends Applet implements Runnable, KeyListener{
 		{
 			EndGame = true;
 		}
+		//Checks if the snake has hit its own body
 		if(player.HitSelf())
 		{
 			EndGame = true;
