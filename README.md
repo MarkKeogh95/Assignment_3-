@@ -1,1 +1,2 @@
 # Assignment_3-
+For this assignment i decided to make a snake game. Control the snake using the arrow keys while trying to avoid the walls and your own body and collect as much fruit as you can to get the best score.
