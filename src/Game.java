@@ -10,44 +10,47 @@ import java.awt.event.KeyListener;
 public class Game extends Applet implements Runnable, KeyListener{
 
 	boolean EndGame;
-	Graphics gfx;
+	Graphics graphs;
 	Image img;
 	Snake player;
 	Thread thread;
+	Fruit fruit;
 	
 	public void init(){
 		this.resize(400, 400);
 		img = createImage(400, 400);
-		gfx = img.getGraphics();
+		graphs = img.getGraphics();
 		this.addKeyListener(this);
 		player = new Snake();
+		fruit = new Fruit();
 		thread = new Thread(this);
 		thread.start();
 	}
 	
-	public void paint(Graphics g){
-		gfx.setColor(Color.black);
-		gfx.fillRect(0, 0, 400, 400);
+	public void paint(Graphics a){
+		graphs.setColor(Color.black);
+		graphs.fillRect(0, 0, 400, 400);
 		if(!EndGame)
 		{
-		player.draw(gfx);
+		player.draw(graphs);
+		fruit.draw(graphs);
 		}
 		else
 		{
-			gfx.setColor(Color.YELLOW);
-			gfx.drawString("GAME OVER", 100, 100);
+			graphs.setColor(Color.YELLOW);
+			graphs.drawString("GAME OVER", 100, 100);
 		}
 		
 		
-		g.drawImage(img, 0, 0, null);
+		a.drawImage(img, 0, 0, null);
 	}
 	
-	public void update(Graphics g){
-		paint(g);
+	public void update(Graphics a){
+		paint(a);
 	}
 	
-	public void repaint(Graphics g){
-		paint(g);
+	public void repaint(Graphics a){
+		paint(a);
 	}
 
 	
