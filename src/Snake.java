@@ -13,21 +13,27 @@ public class Snake {
 	
 	
 	public Snake(){
+		//Make snake body
 		Body = new ArrayList<Point>();
+		
 		xDirection = 0;
 		yDirection = 0;
+		
 		Movement = false;
 		Longer = false;
+		//Setting length and start position of the snake
 		Body.add(new Point(BEGINX, BEGINY));
 		for( int i = 1; i < SSIZE; i++){
 			Body.add(new Point(BEGINX - (i * 4), BEGINY));
 		}
 	}
 	
-	public void draw(Graphics g){
-		g.setColor(Color.white);
-		for(Point a : Body){
-			g.fillRect(a.getX(), a.getY(), 5, 5);
+	public void draw(Graphics a){
+		//Making snake white
+		a.setColor(Color.white);
+		//Drawing body of snake 
+		for(Point b : Body){
+			a.fillRect(b.getX(), b.getY(), 5, 5);
 		}
 	}
 	
