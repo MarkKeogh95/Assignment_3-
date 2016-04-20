@@ -40,6 +40,11 @@ public class Snake {
 			Body.set(i,  Body.get(i - 1));
 		}
 		Body.set(0, newStart);
+		if(Longer)
+		{
+			Body.add(last);
+			Longer = false;
+		}
 		}
 	
 	}

@@ -22,7 +22,7 @@ public class Game extends Applet implements Runnable, KeyListener{
 		graphs = img.getGraphics();
 		this.addKeyListener(this);
 		player = new Snake();
-		fruit = new Fruit();
+		fruit = new Fruit(player);
 		thread = new Thread(this);
 		thread.start();
 	}
@@ -63,6 +63,7 @@ public class Game extends Applet implements Runnable, KeyListener{
 			{
 			player.move();
 			this.EndGameCheck();
+			fruit.FruitEaten();
 			}
 			this.repaint();
 			try 
