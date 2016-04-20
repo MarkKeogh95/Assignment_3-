@@ -72,8 +72,11 @@ public class Game extends Applet implements Runnable, KeyListener{
 			
 			if(!EndGame)
 			{
+			//Moves player
 			player.move();
+			//Checks if game is over
 			this.EndGameCheck();
+			//Checks if fruit is eaten
 			fruit.FruitEaten();
 			}
 			this.repaint();
@@ -96,6 +99,7 @@ public class Game extends Applet implements Runnable, KeyListener{
 		{
 			EndGame = true;
 		}
+		//Checks if the snake has hit a wall
 		if(player.getY() < 0 || player.getY() > 400)
 		{
 			EndGame = true;
